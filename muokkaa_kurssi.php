@@ -9,7 +9,6 @@ if (!$id) {
     exit();
 }
 
-// Fetch current course data
 $sql = "
     SELECT k.*, 
            CONCAT(o.etunimi, ' ', o.sukunimi) AS opettaja_nimi, 
@@ -40,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $opettaja_id = $_POST['opettaja_id'];
         $tila_id = $_POST['tila_id'];
 
-        // Validate dates
         if ($alkupaiva > $loppupaiva) {
             throw new Exception("Alkupäivä ei voi olla loppupäivän jälkeen");
         }
@@ -77,7 +75,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Fetch teachers and rooms for dropdowns
 $teachers = $conn->query("SELECT id, CONCAT(etunimi, ' ', sukunimi) as nimi FROM opettajat ORDER BY sukunimi")->fetchAll(PDO::FETCH_ASSOC);
 $rooms = $conn->query("SELECT id, nimi FROM tilat ORDER BY nimi")->fetchAll(PDO::FETCH_ASSOC);
 ?>
