@@ -1,7 +1,6 @@
 <?php
 include 'db.php';
 
-// Fetch students
 $sql = "SELECT * FROM opiskelijat";
 $stmt = $conn->query($sql);
 ?>
