@@ -10,7 +10,6 @@ try {
 
     $conn->beginTransaction();
 
-    // Check if room is in use
     $check_usage = "SELECT COUNT(*) as count FROM kurssit WHERE tila_id = ?";
     $check_stmt = $conn->prepare($check_usage);
     $check_stmt->execute([$id]);
@@ -20,7 +19,6 @@ try {
         throw new Exception("Tilaa ei voi poistaa, koska se on käytössä kursseilla");
     }
 
-    // Delete the room
     $sql = "DELETE FROM tilat WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$id]);
