@@ -1,14 +1,12 @@
 <?php
-include 'db.php'; // Include your database connection
+include 'db.php'; 
 
-// Check if the course ID is provided
 if (!isset($_GET['id'])) {
     die('Course ID is required');
 }
 
 $course_id = $_GET['id'];
 
-// Fetch course details, with concatenated teacher name
 $sql = "
     SELECT k.*, 
            CONCAT(o.etunimi, ' ', o.sukunimi) AS opettaja_nimi, 
@@ -21,14 +19,12 @@ $stmt = $conn->prepare($sql);
 $stmt->bindParam(':course_id', $course_id, PDO::PARAM_INT);
 $stmt->execute();
 
-// Fetch the course
 $course = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$course) {
     die('Course not found');
 }
 
-// Handle form submission to update course
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tunnus = $_POST['tunnus'];
     $nimi = $_POST['nimi'];
@@ -38,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $opettaja_id = $_POST['opettaja_id'];
     $tila_id = $_POST['tila_id'];
 
-    // Update the course in the database
     $update_sql = "
         UPDATE kurssit
         SET tunnus = :tunnus,
