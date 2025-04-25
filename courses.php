@@ -1,7 +1,6 @@
 <?php
 include 'db.php';
 
-// Fetch courses
 $sql = "SELECT * FROM courses";
 $result = $conn->query($sql);
 ?>
