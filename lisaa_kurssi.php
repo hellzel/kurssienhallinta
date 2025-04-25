@@ -1,12 +1,10 @@
 <?php
 include 'db.php';
 
-// Fetch teachers for dropdown
 $sql_opettajat = "SELECT id, CONCAT(etunimi, ' ', sukunimi) as nimi FROM opettajat ORDER BY sukunimi";
 $stmt_opettajat = $conn->query($sql_opettajat);
 $opettajat = $stmt_opettajat->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetch rooms for dropdown
 $sql_tilat = "SELECT id, nimi FROM tilat ORDER BY nimi";
 $stmt_tilat = $conn->query($sql_tilat);
 $tilat = $stmt_tilat->fetchAll(PDO::FETCH_ASSOC);
@@ -21,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $opettaja_id = $_POST['opettaja_id'];
         $tila_id = $_POST['tila_id'];
 
-        // Validate dates
         if ($alkupaiva > $loppupaiva) {
             throw new Exception("Alkupäivä ei voi olla loppupäivän jälkeen");
         }
