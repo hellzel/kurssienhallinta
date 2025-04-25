@@ -1,7 +1,6 @@
 <?php
 include 'db.php';
 
-// Display messages
 if (isset($_SESSION['error'])) {
     echo '<div class="error-message">' . htmlspecialchars($_SESSION['error']) . '</div>';
     unset($_SESSION['error']);
@@ -12,7 +11,6 @@ if (isset($_SESSION['success'])) {
     unset($_SESSION['success']);
 }
 
-// Fetch rooms
 $sql = "SELECT * FROM tilat";
 $stmt = $conn->query($sql);
 ?>
