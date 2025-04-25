@@ -9,7 +9,6 @@ if (!$id) {
     exit();
 }
 
-// Fetch current room data
 $sql = "SELECT * FROM tilat WHERE id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->execute([$id]);
@@ -26,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $nimi = $_POST['nimi'];
         $kapasiteetti = $_POST['kapasiteetti'];
 
-        // Validate capacity
         if ($kapasiteetti <= 0) {
             throw new Exception("Kapasiteetin täytyy olla suurempi kuin 0");
         }
