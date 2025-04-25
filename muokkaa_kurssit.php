@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label for="opettaja_id">Opettaja:</label>
         <select id="opettaja_id" name="opettaja_id">
             <?php
-            // Fetch all teachers
+            
             $teachers_sql = "SELECT * FROM opettajat";
             $teachers_stmt = $conn->query($teachers_sql);
             while ($teacher = $teachers_stmt->fetch(PDO::FETCH_ASSOC)):
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <label for="tila_id">Tila:</label>
         <select id="tila_id" name="tila_id">
             <?php
-            // Fetch all rooms
+            
             $rooms_sql = "SELECT * FROM tilat";
             $rooms_stmt = $conn->query($rooms_sql);
             while ($room = $rooms_stmt->fetch(PDO::FETCH_ASSOC)):
